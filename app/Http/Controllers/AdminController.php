@@ -96,8 +96,8 @@ public function storeUser(Request $request)
     // Validate the incoming request
     $validatedData = $request->validate([
         'full_name' => 'required|string|max:255',
-        'mobile_number' => 'required|numeric|digits:10', 
-        'email' => 'nullable|email',
+        'mobile_number' => 'required|numeric|digits:10|unique:users,mobile_number', // Added unique validation
+        'email' => 'nullable|email|unique:users,email', // Ensure email is unique too
         'password' => 'required|min:6',
     ]);
 
